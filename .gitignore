@@ -11,3 +11,12 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+/.castor.stub.php
+/public/pwa
+/public/workbox
+/public/sw.js
+/public/favicon.ico
+/.ci-tools/coverage
+/.ci-tools/.phpunit.cache
+/.deptrac.cache

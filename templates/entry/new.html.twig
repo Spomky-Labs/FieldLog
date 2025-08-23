@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Entry{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen bg-base-100 text-base-content px-4 py-8 flex items-start justify-center">
+        <div class="w-full max-w-xl">
+            <div class="card bg-base-200 shadow-md">
+                <div class="card-body space-y-4">
+                    <!-- Back to homepage -->
+                    <div class="flex justify-start">
+                        <a href="{{ path('app_homepage__invoke') }}" class="btn btn-sm btn-ghost">
+                            <twig:ux:icon name="lucide:arrow-left" class="size-4" />
+                            <span>Back to homepage</span>
+                        </a>
+                    </div>
+
+                    <h1 class="text-2xl font-bold text-primary">Create a new entry</h1>
+
+                    {{ form_start(form) }}
+
+                    <div class="space-y-4">
+                        {{ form_row(form.title, {
+                            label_attr: { class: 'label font-medium' },
+                            attr: { class: 'input input-bordered w-full' }
+                        }) }}
+
+                        {% if form.text is defined %}
+                        {{ form_row(form.text, {
+                            label_attr: { class: 'label font-medium' },
+                            attr: { class: 'textarea textarea-bordered w-full' }
+                        }) }}
+                        {% endif %}
+
+                        {% if form.url is defined %}
+                        {{ form_row(form.url, {
+                            label_attr: { class: 'label font-medium' },
+                            attr: { class: 'input input-bordered w-full' }
+                        }) }}
+                        {% endif %}
+
+                        {% if form.file is defined %}
+                        {{ form_row(form.file, {
+                            label_attr: { class: 'label font-medium' },
+                            attr: { class: 'file-input file-input-bordered w-full' }
+                        }) }}
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-6">
+                        <button type="submit" class="btn btn-primary w-full">💾 Save Entry</button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

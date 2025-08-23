@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entry Details{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen bg-base-100 text-base-content p-4 flex flex-col items-center">
+        <div class="w-full max-w-2xl">
+            <div class="card bg-base-200 shadow-md">
+                <div class="card-body space-y-4">
+                    <!-- Back to homepage -->
+                    <div class="flex justify-start">
+                        <a href="{{ path('app_homepage__invoke') }}" class="btn btn-sm btn-ghost">
+                            <twig:ux:icon name="lucide:arrow-left" class="size-4" />
+                            <span>Back to homepage</span>
+                        </a>
+                    </div>
+
+                    <h1 class="text-2xl font-bold text-primary">{{ entry.title }}</h1>
+
+                    <p class="text-sm text-base-content/60">
+                        📅 {{ entry.publishedAt|date('Y-m-d H:i') }}
+                    </p>
+
+                    {% if entry.type.value == 'text' %}
+                        <div class="prose max-w-none">
+                            {{ entry.textContent|nl2br }}
+                        </div>
+
+                    {% elseif entry.type.value == 'link' %}
+                        <a href="{{ entry.url }}" target="_blank" class="link link-primary break-all">
+                            🔗 {{ entry.url }}
+                        </a>
+
+                    {% elseif entry.type.value == 'file' %}
+                        <a
+                            href="{{ asset(entry.filePath) }}"
+                            download
+                            class="btn btn-outline btn-accent"
+                        >
+                            📎 Download file ({{ entry.mimeType }})
+                        </a>
+                    {% else %}
+                        <p class="text-error">Unknown entry type.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

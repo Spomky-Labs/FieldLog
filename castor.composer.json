@@ -1,6 +1,0 @@
-{
-    "require": {
-        "symfony/ux-live-component": "^2.29",
-        "symfony/ux-twig-component": "^2.29"
-    }
-}

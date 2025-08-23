@@ -1,0 +1,133 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Class "App\\Controller\\EntryController" is not allowed to extend "Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController"\.$#'
+			identifier: ergebnis.noExtends
+			count: 1
+			path: ../src/Controller/EntryController.php
+
+		-
+			message: '#^Class "App\\Controller\\HomepageController" is not allowed to extend "Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController"\.$#'
+			identifier: ergebnis.noExtends
+			count: 1
+			path: ../src/Controller/HomepageController.php
+
+		-
+			message: '#^Method App\\Entity\\Entry\:\:__construct\(\) has parameter \$filePath with a nullable type declaration\.$#'
+			identifier: ergebnis.noParameterWithNullableTypeDeclaration
+			count: 1
+			path: ../src/Entity/Entry.php
+
+		-
+			message: '#^Method App\\Entity\\Entry\:\:__construct\(\) has parameter \$mimeType with a nullable type declaration\.$#'
+			identifier: ergebnis.noParameterWithNullableTypeDeclaration
+			count: 1
+			path: ../src/Entity/Entry.php
+
+		-
+			message: '#^Method App\\Entity\\Entry\:\:__construct\(\) has parameter \$textContent with a nullable type declaration\.$#'
+			identifier: ergebnis.noParameterWithNullableTypeDeclaration
+			count: 1
+			path: ../src/Entity/Entry.php
+
+		-
+			message: '#^Method App\\Entity\\Entry\:\:__construct\(\) has parameter \$url with a nullable type declaration\.$#'
+			identifier: ergebnis.noParameterWithNullableTypeDeclaration
+			count: 1
+			path: ../src/Entity/Entry.php
+
+		-
+			message: '#^Method App\\Entity\\Entry\:\:createFile\(\) has parameter \$mimeType with a nullable type declaration\.$#'
+			identifier: ergebnis.noParameterWithNullableTypeDeclaration
+			count: 1
+			path: ../src/Entity/Entry.php
+
+		-
+			message: '#^Cannot call method getMimeType\(\) on Symfony\\Component\\HttpFoundation\\File\\File\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Cannot call method getPathname\(\) on Symfony\\Component\\HttpFoundation\\File\\File\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Cannot call method guessExtension\(\) on Symfony\\Component\\HttpFoundation\\File\\File\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Method App\\Form\\EntryFormHandler\:\:create\(\) should return Symfony\\Component\\Form\\FormInterface\<App\\Form\\EntryType\> but returns Symfony\\Component\\Form\\FormInterface\<App\\Form\\EntryData\|null\>\.$#'
+			identifier: return.type
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Method App\\Form\\EntryFormHandler\:\:handle\(\) has a nullable return type declaration\.$#'
+			identifier: ergebnis.noNullableReturnTypeDeclaration
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^PHPDoc tag @var with type App\\Form\\EntryData is not subtype of type App\\Form\\EntryType\.$#'
+			identifier: varTag.type
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Parameter \#2 \$contents of method League\\Flysystem\\FilesystemWriter\:\:write\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Parameter \#4 \$textContent of static method App\\Entity\\Entry\:\:createText\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Parameter \#4 \$url of static method App\\Entity\\Entry\:\:createUrl\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Form/EntryFormHandler.php
+
+		-
+			message: '#^Cannot access property \$value on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: ../src/Form/EntryType.php
+
+		-
+			message: '#^Class "App\\Form\\EntryType" is not allowed to extend "Symfony\\Component\\Form\\AbstractType"\.$#'
+			identifier: ergebnis.noExtends
+			count: 1
+			path: ../src/Form/EntryType.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../src/Form/EntryType.php
+
+		-
+			message: '#^Class "App\\Kernel" is not allowed to extend "Symfony\\Component\\HttpKernel\\Kernel"\.$#'
+			identifier: ergebnis.noExtends
+			count: 1
+			path: ../src/Kernel.php
+
+		-
+			message: '#^Class "App\\Repository\\EntryRepository" is not allowed to extend "Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository"\.$#'
+			identifier: ergebnis.noExtends
+			count: 1
+			path: ../src/Repository/EntryRepository.php
+
+		-
+			message: '#^Method App\\Repository\\EntryRepository\:\:getPaginatedEntries\(\) should return Doctrine\\ORM\\Tools\\Pagination\\Paginator\<App\\Entity\\Entry\> but returns Doctrine\\ORM\\Tools\\Pagination\\Paginator\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: ../src/Repository/EntryRepository.php

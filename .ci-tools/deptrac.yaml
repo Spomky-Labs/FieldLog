@@ -1,0 +1,17 @@
+deptrac:
+    paths:
+        - ./../src
+    layers:
+        - name: 'application'
+          collectors:
+              - type: 'directory'
+                value: 'src/.*'
+        - name: 'vendors'
+          collectors:
+              - { type: classLike, value: '^League\\' }
+              - { type: classLike, value: '^Doctrine\\' }
+              - { type: classLike, value: '^Symfony\\' }
+              - { type: classLike, value: '^Twig\\' }
+    ruleset:
+        application:
+            - 'vendors'
