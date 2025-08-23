@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@plugin "../vendor/daisyui/daisyui.index.js" {
+    themes: nord --default, forest --prefersdark;
+}
