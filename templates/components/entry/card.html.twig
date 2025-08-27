@@ -1,0 +1,25 @@
+<div class="card bg-base-200 shadow">
+    <div id="card-{{ entry.id }}" class="card-body p-4"
+         style="view-transition-name: entry-{{ entry.id }};">
+        <h2 class="card-title text-base-content text-lg font-semibold"
+            style="view-transition-name: entry-{{ entry.id }}-title;">
+            <a href="{{ path('entry_show', { id: entry.id }) }}">
+                {{ entry.title }}
+            </a>
+        </h2>
+
+        <p id="card-{{ entry.id }}-type" class="text-sm text-base-content/70 italic">
+            {% set icon = {
+                'text': '📝',
+                'file': '📎',
+                'link': '🔗'
+            }[entry.type.value] ?? '❓' %}
+            {{ icon }} {{ entry.type.value|capitalize }}
+        </p>
+
+        <div id="card-{{ entry.id }}-date" class="card-actions justify-between mt-2 text-xs text-base-content/50">
+            📅 {{ entry.publishedAt|format_date('medium') }}
+            <a href="{{ path('entry_show', { id: entry.id }) }}" class="link link-primary">View</a>
+        </div>
+    </div>
+</div>

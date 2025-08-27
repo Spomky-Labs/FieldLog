@@ -3,13 +3,14 @@
 {% block title %}New Entry{% endblock %}
 
 {% block body %}
+    <twig:header position="right" />
     <div class="min-h-screen bg-base-100 text-base-content px-4 py-8 flex items-start justify-center">
-        <div class="w-full max-w-xl">
+        <div class="w-full max-w-xl relative">
             <div class="card bg-base-200 shadow-md">
                 <div class="card-body space-y-4">
                     <!-- Back to homepage -->
                     <div class="flex justify-start">
-                        <a href="{{ path('app_homepage__invoke') }}" class="btn btn-sm btn-ghost">
+                        <a href="{{ path('list') }}" class="btn btn-sm btn-ghost">
                             <twig:ux:icon name="lucide:arrow-left" class="size-4" />
                             <span>Back to homepage</span>
                         </a>
@@ -55,5 +56,6 @@
                 </div>
             </div>
         </div>
+        <twig:fab />
     </div>
 {% endblock %}

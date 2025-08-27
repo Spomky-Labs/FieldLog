@@ -19,7 +19,7 @@ final class EntryController extends AbstractController
     ) {
     }
 
-    #[Route('/new/{type}', name: 'entry_new', methods: [Request::METHOD_POST, Request::METHOD_GET])]
+    #[Route('/entries/new/{type}', name: 'entry_new', methods: [Request::METHOD_POST, Request::METHOD_GET])]
     public function new(Request $request, string $type): Response
     {
         $form = $this->textFormHandler->create([
@@ -28,7 +28,7 @@ final class EntryController extends AbstractController
         $result = $this->textFormHandler->handle($request, $form);
         if ($result instanceof Entry) {
             $this->addFlash('success', 'entry.text.created_successfully');
-            return $this->redirectToRoute('app_homepage__invoke');
+            return $this->redirectToRoute('list');
         }
 
         return $this->render('entry/new.html.twig', [
@@ -36,7 +36,7 @@ final class EntryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'entry_show', methods: [Request::METHOD_POST, Request::METHOD_GET])]
+    #[Route('/entries/{id}/show', name: 'entry_show', methods: [Request::METHOD_POST, Request::METHOD_GET])]
     public function show(Entry $entry): Response
     {
         return $this->render('entry/show.html.twig', [

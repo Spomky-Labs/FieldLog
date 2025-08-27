@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FieldLog{% endblock %}
+
+{% block body %}
+    <twig:header position="center" />
+    <!-- Entries List -->
+    {% if entries is empty %}
+        <div class="text-center text-base-content/60">
+            <p>No entries yet.</p>
+        </div>
+    {% else %}
+        <div id="item-list" class="flex flex-col gap-4">
+            {% for entry in entries %}
+                {% include 'components/entry/card.html.twig' with {entry: entry} %}
+            {% endfor %}
+        <twig:fab />
+        </div>
+    {% endif %}
+{% endblock %}

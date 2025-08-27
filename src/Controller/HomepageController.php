@@ -18,13 +18,19 @@ final class HomepageController extends AbstractController
     }
 
     #[Route('/', methods: [Request::METHOD_GET])]
-    public function __invoke(Request $request): Response
+    public function root(): Response
+    {
+        return $this->render('homepage/index.html.twig');
+    }
+
+    #[Route('/list', name: 'list', methods: [Request::METHOD_GET])]
+    public function list(Request $request): Response
     {
         $page = (int) $request->query->get('page', '1');
         $page = max($page, 1);
         $maxPerPage = 25;
 
-        return $this->render('homepage/index.html.twig', [
+        return $this->render('homepage/list.html.twig', [
             'entries' => $this->entryRepository->getPaginatedEntries($page, $maxPerPage),
             'current_page' => $page,
             'max_per_page' => $maxPerPage,

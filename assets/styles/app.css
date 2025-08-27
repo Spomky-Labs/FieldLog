@@ -1,4 +1,88 @@
 @import "tailwindcss";
+
 @plugin "../vendor/daisyui/daisyui.index.js" {
     themes: caramellatte --default, coffee --prefersdark;
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+#icon {
+    view-transition-name: icon;
+}
+
+::view-transition-group(icon) {
+    animation-duration: .5s;
+    animation-timing-function: ease;
+}
+
+#brand {
+    view-transition-name: brand;
+}
+
+#subtitle {
+    view-transition-name: subtitle;
+}
+
+::view-transition-group(brand) {
+    animation-duration: .5s;
+    animation-timing-function: ease;
+}
+
+::view-transition-group(subtitle) {
+    animation-duration: .4s;
+    animation-timing-function: ease;
+}
+
+::view-transition-old(subtitle) {
+    animation: subtitle-fade-out .4s ease forwards;
+}
+
+@keyframes subtitle-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(brand), ::view-transition-group(subtitle) {
+        animation-duration: .01ms;
+    }
+}
+
+
+#item-list main {
+    view-transition-name: item-list;
+}
+
+::view-transition-group(item-list) {
+    z-index: 2;
+    overflow: clip;
+    border-radius: 2rem;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+::view-transition-new(item-list) {
+    animation: 300ms cubic-bezier(0, 0, 0.2, 1) both fade-in;
+    animation-delay: 0.5s;
+}
+
+::view-transition-old(item-list) {
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
 }

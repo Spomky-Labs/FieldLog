@@ -1,0 +1,31 @@
+{% for message in app.flashes('success') %}
+    <div
+        class="toast toast-end fixed top-5 right-5"
+        data-turbo-temporary
+        {{ stimulus_controller('closeable', {'auto-close': 3500}) }}
+    >
+        <div class="alert alert-success relative shadow-lg overflow-hidden">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 fill="none" viewBox="0 0 24 24"
+                 class="stroke-current shrink-0 w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+
+            <span>{{ message }}</span>
+
+            <button
+                type="button"
+                class="btn btn-ghost btn-circle btn-sm ml-auto"
+                aria-label="Close"
+                {{ stimulus_action('closeable', 'close') }}
+            >✕</button>
+
+            <div
+                class="absolute bottom-0 left-0 h-1 w-full bg-success-content/40 rounded-none transition-all duration-[5000ms] ease-linear"
+                {{ stimulus_target('closeable', 'timerbar') }}
+            ></div>
+        </div>
+
+    </div>
+{% endfor %}

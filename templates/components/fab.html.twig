@@ -1,0 +1,17 @@
+<div {{ attributes }} class="fixed bottom-4 right-8 z-40 group">
+    <div tabindex="0" role="button" class="btn btn-circle btn-primary shadow-xl">
+        <twig:ux:icon name="lucide:plus" class="size-5 text-white" />
+    </div>
+
+    <ul class="absolute bottom-16 right-0 flex flex-col items-end space-y-2 opacity-0 scale-0 group-focus-within:opacity-100 group-focus-within:scale-100 transition-all duration-200">
+        <li>
+            <twig:tool link="{{ path('entry_new', { type: 'text' }) }}" title="New text" icon="lucide:file-text" />
+        </li>
+        <li>
+            <twig:tool link="{{ path('entry_new', { type: 'link' }) }}" title="New link" icon="lucide:link" />
+        </li>
+        <li>
+            <twig:tool link="{{ path('entry_new', { type: 'file' }) }}" title="Upload file" icon="lucide:file" />
+        </li>
+    </ul>
+</div>

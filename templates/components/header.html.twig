@@ -1,0 +1,12 @@
+{% set positionClass = {
+    'left': 'justify-start',
+    'center': 'justify-center',
+    'right': 'justify-end'
+}[position|default('center')] %}
+
+<header {{ attributes }} id="header" class="flex items-center {{ positionClass }}">
+    <h1 class="text-3xl font-bold text-primary">
+        <span id="icon">📒 </span>
+        <a id="brand" href="{{ path('list') }}">FieldLog</a>
+    </h1>
+</header>

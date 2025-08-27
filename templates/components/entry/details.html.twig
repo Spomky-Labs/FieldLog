@@ -1,0 +1,48 @@
+<div class="card bg-base-200 shadow-md">
+    <div id="card-{{ entry.id }}" class="card-body space-y-4"
+         style="view-transition-name: entry-{{ entry.id }};">
+        <div class="flex justify-start">
+            <a href="{{ path('list') }}" class="btn btn-sm btn-ghost">
+                <twig:ux:icon name="lucide:arrow-left" class="size-4" />
+                <span>Back to homepage</span>
+            </a>
+        </div>
+
+        <h1 id="card-{{ entry.id }}-title" class="text-2xl font-bold text-primary">
+            {{ entry.title }}
+        </h1>
+
+        <p id="card-{{ entry.id }}-type" class="text-sm text-base-content/70 italic">
+            {% set icon = {
+                'text': '📝',
+                'file': '📎',
+                'link': '🔗'
+            }[entry.type.value] ?? '❓' %}
+            {{ icon }} {{ entry.type.value|capitalize }}
+        </p>
+
+        <p id="card-{{ entry.id }}-date" class="text-sm text-base-content/60">
+            📅 {{ entry.publishedAt|date('Y-m-d H:i') }}
+        </p>
+
+        {% if entry.type.value == 'text' %}
+            <div class="prose max-w-none">
+                {{ entry.textContent|nl2br }}
+            </div>
+
+        {% elseif entry.type.value == 'link' %}
+            <a href="{{ entry.url }}" target="_blank" class="link link-primary break-all">
+                🔗 {{ entry.url }}
+            </a>
+
+        {% elseif entry.type.value == 'file' %}
+            <a href="{{ asset(entry.filePath) }}"
+               download
+               class="btn btn-outline btn-accent">
+                📎 Download file ({{ entry.mimeType }})
+            </a>
+        {% else %}
+            <p class="text-error">Unknown entry type.</p>
+        {% endif %}
+    </div>
+</div>
