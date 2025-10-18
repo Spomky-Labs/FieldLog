@@ -1,7 +1,6 @@
 {% for message in app.flashes('success') %}
     <div
         class="toast toast-end fixed top-5 right-5"
-        data-turbo-temporary
         {{ stimulus_controller('closeable', {'auto-close': 3500}) }}
     >
         <div class="alert alert-success relative shadow-lg overflow-hidden">
