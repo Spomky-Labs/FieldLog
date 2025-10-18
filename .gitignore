@@ -20,3 +20,5 @@
 /.ci-tools/coverage
 /.ci-tools/.phpunit.cache
 /.deptrac.cache
+/.castor.stub.php
+/uploads
