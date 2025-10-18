@@ -12,7 +12,7 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
-/.castor.stub.php
+.castor.stub.php
 /public/pwa
 /public/workbox
 /public/sw.js
@@ -20,5 +20,4 @@
 /.ci-tools/coverage
 /.ci-tools/.phpunit.cache
 /.deptrac.cache
-/.castor.stub.php
 /uploads
