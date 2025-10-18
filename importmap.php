@@ -26,20 +26,20 @@ return [
         'version' => '3.2.2',
     ],
     'daisyui' => [
-        'version' => '5.0.50',
+        'version' => '5.3.7',
     ],
     'daisyui/daisyui.min.css' => [
-        'version' => '5.0.50',
+        'version' => '5.3.7',
         'type' => 'css',
     ],
     'daisyui/theme' => [
-        'version' => '5.0.50',
+        'version' => '5.3.7',
     ],
     'tailwindcss' => [
-        'version' => '4.1.12',
+        'version' => '4.1.14',
     ],
     'tailwindcss/index.min.css' => [
-        'version' => '4.1.12',
+        'version' => '4.1.14',
         'type' => 'css',
     ],
     'stimulus-use' => [
