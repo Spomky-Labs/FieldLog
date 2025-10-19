@@ -1,51 +1,107 @@
-# Symfony Docker
+# FieldLog
 
-A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework,
-with [FrankenPHP](https://frankenphp.dev) and [Caddy](https://caddyserver.com/) inside!
+A personal multimedia journaling application built with Symfony 7.3 that allows you to create and manage different types of entries in your personal log.
 
-![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
+## About
 
-## Getting Started
-
-1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
-2. Run `docker compose build --pull --no-cache` to build fresh images
-3. Run `docker compose up --wait` to set up and start a fresh Symfony project
-4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
-5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+FieldLog is a web application designed to help you organize and store your thoughts, bookmarks, and files in a chronological journal. Whether you want to save text notes, bookmark important links, or store documents and images, FieldLog provides a unified interface to manage all your content.
 
 ## Features
 
-* Production, development and CI ready
-* Just 1 service by default
-* Blazing-fast performance thanks to [the worker mode of FrankenPHP](https://github.com/dunglas/frankenphp/blob/main/docs/worker.md) (automatically enabled in prod mode)
-* [Installation of extra Docker Compose services](docs/extra-services.md) with Symfony Flex
-* Automatic HTTPS (in dev and prod)
-* HTTP/3 and [Early Hints](https://symfony.com/blog/new-in-symfony-6-3-early-hints) support
-* Real-time messaging thanks to a built-in [Mercure hub](https://symfony.com/doc/current/mercure.html)
-* [Vulcain](https://vulcain.rocks) support
-* Native [XDebug](docs/xdebug.md) integration
-* Super-readable configuration
+### Three Entry Types
 
-**Enjoy!**
+* **Text Entries**: Write and save personal notes, thoughts, and reflections
+* **Link Entries**: Bookmark URLs with descriptive titles for easy reference
+* **File Entries**: Upload and store files including images, documents, and other media
 
-## Docs
+### Core Functionality
 
-1. [Options available](docs/options.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Debugging with Xdebug](docs/xdebug.md)
-6. [TLS Certificates](docs/tls.md)
-7. [Using MySQL instead of PostgreSQL](docs/mysql.md)
-8. [Using Alpine Linux instead of Debian](docs/alpine.md)
-9. [Using a Makefile](docs/makefile.md)
-10. [Updating the template](docs/updating.md)
-11. [Troubleshooting](docs/troubleshooting.md)
+* **Timestamped Entries**: All entries are automatically timestamped with publication date
+* **Paginated Lists**: Browse your entries with pagination (5 entries per page by default)
+* **Type Filtering**: Organize and view entries by type
+* **Rich Metadata**: Each entry includes title (up to 180 characters), type, and relevant content
+
+## Tech Stack
+
+* **Backend**: Symfony 7.3, PHP 8.2+, Doctrine ORM
+* **Frontend**: Twig templates, Stimulus controllers, TailwindCSS
+* **Components**: Symfony UX (Live Components, Twig Components, Icons)
+* **Infrastructure**: Docker with FrankenPHP and Caddy
+* **Storage**: Doctrine for database, Flysystem for file management
+
+## Getting Started
+
+### Prerequisites
+
+* [Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
+* [Castor](https://castor.jolicode.com/) - PHP task runner for managing the project
+
+### Installation
+
+1. Clone the repository
+2. Build and start the infrastructure:
+   ```bash
+   castor build
+   castor start
+   ```
+3. Install dependencies:
+   ```bash
+   castor install
+   ```
+4. Open `https://localhost` in your web browser and accept the auto-generated TLS certificate
+
+### Available Commands
+
+#### Infrastructure Management
+
+* `castor build` - Build Docker images
+* `castor start` - Start containers (also compiles frontend)
+* `castor stop` - Stop containers
+* `castor restart` - Restart containers
+* `castor destroy` - Remove all containers, volumes, and networks
+
+#### Development
+
+* `castor install` - Install Composer dependencies
+* `castor update` - Update dependencies and run migrations
+* `castor frontend` - Compile frontend assets
+* `castor frontend --watch` - Watch mode for frontend development
+* `castor console <command>` - Run Symfony console commands
+
+#### Code Quality
+
+* `castor ecs` - Check code style with Easy Coding Standard
+* `castor ecs --fix` - Automatically fix code style issues
+* `castor rector` - Analyze code with Rector
+* `castor rector --fix` - Apply automatic refactorings
+* `castor phpstan` - Run static analysis with PHPStan
+* `castor lint` - Check PHP syntax
+* `castor deptrac` - Verify architecture dependencies
+
+#### Testing
+
+* `castor phpunit` - Run PHPUnit tests with coverage
+* `castor infect` - Run mutation testing with Infection
+
+#### Complete Workflow
+
+* `castor prepare_pr` - Prepare code for pull request (fix style, run static analysis)
+
+All QA tools run in an isolated Docker container (`ghcr.io/spomky-labs/phpqa:8.4`) to ensure consistent analysis across environments.
+
+## Project Structure
+
+```
+src/
+├── Controller/     # Application controllers
+├── Entity/         # Doctrine entities
+└── Repository/     # Database repositories
+
+templates/          # Twig templates
+assets/            # Frontend assets (JS, CSS)
+.ci-tools/         # Configuration for QA tools
+```
 
 ## License
 
-Symfony Docker is available under the MIT License.
-
-## Credits
-
-Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+This project is proprietary software.
