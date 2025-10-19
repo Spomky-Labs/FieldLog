@@ -34,6 +34,7 @@ final class HomepageController extends AbstractController
             'entries' => $this->entryRepository->getPaginatedEntries($page, $maxPerPage),
             'current_page' => $page,
             'max_per_page' => $maxPerPage,
+            'total_pages' => ceil($this->entryRepository->count() / $maxPerPage),
         ]);
     }
 }
