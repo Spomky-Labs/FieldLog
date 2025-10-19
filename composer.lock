@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac0b067a591c78c8c45b1c6360d106e2",
+    "content-hash": "654ec92afe57716230052586a6b36446",
     "packages": [
         {
             "name": "composer/semver",
@@ -2219,6 +2219,110 @@
                 }
             ],
             "time": "2023-12-12T12:06:11+00:00"
+        },
+        {
+            "name": "spomky-labs/pwa-bundle",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Spomky-Labs/pwa-bundle.git",
+                "reference": "bee0efe0eab3d499efaa22ae1c5eb76a161be575"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Spomky-Labs/pwa-bundle/zipball/bee0efe0eab3d499efaa22ae1c5eb76a161be575",
+                "reference": "bee0efe0eab3d499efaa22ae1c5eb76a161be575",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "phpdocumentor/reflection-docblock": "^5.3",
+                "psr/log": "^1.1|^2.0|^3.0",
+                "symfony/asset": "^6.4|^7.0",
+                "symfony/asset-mapper": "^6.4|^7.0",
+                "symfony/config": "^6.4|^7.0",
+                "symfony/dependency-injection": "^6.4|^7.0",
+                "symfony/deprecation-contracts": "^3.5",
+                "symfony/http-kernel": "^6.4|^7.0",
+                "symfony/property-access": "^6.4|^7.0",
+                "symfony/property-info": "^6.4|^7.0",
+                "symfony/routing": "^6.4|^7.0",
+                "symfony/serializer": "^6.4|^7.0",
+                "symfony/service-contracts": "^3.0",
+                "twig/twig": "^3.8"
+            },
+            "require-dev": {
+                "matthiasnoback/symfony-config-test": "^5.1|^6.0",
+                "nelmio/security-bundle": "^3.0",
+                "symfony/console": "^7.2",
+                "symfony/filesystem": "^7.1",
+                "symfony/framework-bundle": "^6.4|^7.0",
+                "symfony/mime": "^6.4|^7.0",
+                "symfony/monolog-bundle": "^3.10",
+                "symfony/translation": "^7.0",
+                "symfony/ux-icons": "^2.29",
+                "symfony/yaml": "^6.4|^7.0"
+            },
+            "suggest": {
+                "ext-gd": "Required to generate icons (or Imagick).",
+                "ext-imagick": "Required to generate icons (or GD).",
+                "symfony/filesystem": "For generating and manipulating icons or screenshots",
+                "symfony/mime": "For generating and manipulating icons or screenshots",
+                "symfony/ux-icons": "For using SVG icons (e.g. for shortcuts)"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/spomky-labs/pwa-bundle",
+                    "name": "spomky-labs/pwa-bundle"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SpomkyLabs\\PwaBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florent Morselli",
+                    "homepage": "https://github.com/Spomky"
+                },
+                {
+                    "name": "All contributors",
+                    "homepage": "https://github.com/spomky-labs/pwa-bundle/contributors"
+                }
+            ],
+            "description": "Progressive Web App Manifest Generator Bundle for Symfony.",
+            "homepage": "https://github.com/spomky-labs",
+            "keywords": [
+                "bundle",
+                "pwa",
+                "symfony",
+                "symfony-ux"
+            ],
+            "support": {
+                "issues": "https://github.com/Spomky-Labs/pwa-bundle/issues",
+                "source": "https://github.com/Spomky-Labs/pwa-bundle/tree/1.3.2"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/FlorentMorselli",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Spomky",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/FlorentMorselli",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2025-10-14T13:54:26+00:00"
         },
         {
             "name": "symfony/asset",

@@ -1,0 +1,92 @@
+pwa:
+    image_processor: 'pwa.image_processor.imagick'
+    favicons:
+        enabled: true
+        default:
+            src: "twemoji:ledger"
+        low_resolution: true
+        tile_color: "#eee"
+    manifest:
+        # Application information
+        name: 'FieldLog - Personal Journal'
+        short_name: 'FieldLog'
+        description: 'Your personal multimedia journaling application'
+        public_url: '/site.{locale}.webmanifest'
+
+        # Display and theming
+        theme_color: '#4f46e5'  # Indigo color matching your design
+        background_color: '#ffffff'
+        display: 'standalone'  # App-like experience without browser UI
+        orientation: 'any'
+
+        # Start configuration
+        start_url: '/'
+        scope: '/'
+
+        # Language and direction
+        lang: 'en'
+        dir: 'ltr'
+
+        # Categories for app stores
+        categories:
+            - 'productivity'
+            - 'lifestyle'
+
+        # Icons - will be configured after creating the icon files
+        icons:
+            - src: 'twemoji:ledger'
+              format: 'png'
+              sizes: [48, 144, 256, 512]
+              background_color: "#ffffff"
+              purpose: 'any'
+            - src: 'twemoji:ledger'
+              format: 'png'
+              sizes: [48, 144, 256, 512]
+              image_scale: 60
+              background_color: "#eee"
+              border_radius: 50
+              purpose: 'maskable'
+
+        # App shortcuts for quick actions
+        shortcuts:
+            - name: 'New Text Entry'
+              short_name: 'Text'
+              description: 'Create a new text entry'
+              url:
+                  path: 'entry_new'
+                  params:
+                      type: 'text'
+              icons:
+                  - src: 'lucide:file-text'
+                    sizes: [48, 144, 256, 512]
+                    format: 'png'
+            - name: 'New Link'
+              short_name: 'Link'
+              description: 'Save a new bookmark'
+              url:
+                  path: 'entry_new'
+                  params:
+                      type: 'link'
+              icons:
+                  - src: 'lucide:link'
+                    sizes: [48, 144, 256, 512]
+                    format: 'png'
+            - name: 'New File'
+              short_name: 'File'
+              description: 'Upload a new file'
+              url:
+                  path: 'entry_new'
+                  params:
+                      type: 'file'
+              icons:
+                  - src: 'lucide:file'
+                    sizes: [48, 144, 256, 512]
+                    format: 'png'
+
+    # Service Worker configuration
+    serviceworker:
+        enabled: true
+        src: 'sw.js'
+        dest: '/sw.js'
+        scope: '/'
+        use_cache: false  # Disable HTTP cache to ensure SW updates

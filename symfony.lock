@@ -47,6 +47,9 @@
             "config/packages/oneup_flysystem.yaml"
         ]
     },
+    "spomky-labs/pwa-bundle": {
+        "version": "1.3.2"
+    },
     "symfony/asset-mapper": {
         "version": "7.3",
         "recipe": {

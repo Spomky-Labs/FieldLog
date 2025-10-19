@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="view-transition" content="same-origin" />
     <title>{% block title %}Welcome!{% endblock %}</title>
+
+    {# PWA Bundle - Manifest and Service Worker #}
+    {{ pwa() }}
+
     {% block stylesheets %}
     {% endblock %}
 
