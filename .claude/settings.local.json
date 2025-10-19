@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:pwa.spomky-labs.com)",
+      "Bash(composer require:*)",
+      "Bash(castor console:*)",
+      "Bash(cat:*)",
+      "Bash(castor start:*)",
+      "Bash(php bin/console:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
