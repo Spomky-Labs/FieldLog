@@ -14,6 +14,7 @@
             {% for entry in entries %}
                 {% include 'components/entry/card.html.twig' with {entry: entry} %}
             {% endfor %}
+            <twig:Pagination totalPages="{{ (entries.count/max_per_page)|round(0,'ceil') }}" currentPage="{{ current_page }}" maxPerPage="{{ max_per_page }}" />
         <twig:fab />
         </div>
     {% endif %}
