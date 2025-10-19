@@ -106,7 +106,7 @@
                 "fetch": "eager"
             },
             "web-share": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "eager"
             }
         },
