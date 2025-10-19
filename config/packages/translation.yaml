@@ -1,5 +1,8 @@
 framework:
-    default_locale: en
+    set_locale_from_accept_language: true
+    set_content_language_from_locale: true
+    enabled_locales: '%app.supported_locales%'
+    default_locale: '%app.default_locale%'
     translator:
         default_path: '%kernel.project_dir%/translations'
         providers:
