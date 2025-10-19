@@ -339,23 +339,8 @@ function prepare_pr(): void
         ->success('Code is ready. You may now commit and push your changes.');
 }
 
-#[AsTask(description: 'Run composer.', ignoreValidationErrors: true)]
-function composer(#[AsRawTokens] array $args = []): void
-{
-    phpqa(['composer', ...$args]);
-}
-
 #[AsTask(description: 'Initialize the project.')]
 function init(): void
 {
     io()->title('Initializing the project…');
-    console(['app:sites:create-from-smart']);
-    console(['app:plants:create-from-smart']);
-    console(['app:rooms:create-from-smart']);
-    console(['app:surfaces:create-from-smart']);
-    console(['app:penetrations:create-from-smart']);
-
-    console(['app:functional-requirements:import']);
-    console(['app:maintenance-programs:import']);
-    console(['app:maintenance-sheet:import']);
 }
