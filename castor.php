@@ -238,45 +238,39 @@ function phpunit(): void
     );
 }
 
-#[AsTask(description: 'Run Easy Coding Standard')]
-function ecs(): void
+#[AsTask(description: 'Run Easy Coding Standard (use --fix to automatically fix issues)')]
+function ecs(bool $fix = false): void
 {
-    phpqa(['composer', 'exec', '--', 'ecs', 'check', '--config', '.ci-tools/ecs.php']);
+    $command = ['composer', 'exec', '--', 'ecs', 'check', '--config', '.ci-tools/ecs.php'];
+    if ($fix) {
+        $command[] = '--fix';
+    }
+    phpqa($command);
 }
 
-#[AsTask(description: 'Fix coding style with Easy Coding Standard')]
-function ecs_fix(): void
+#[AsTask(description: 'Run Rector (use --fix to apply automatic refactorings)')]
+function rector(bool $fix = false): void
 {
-    phpqa(['composer', 'exec', '--', 'ecs', 'check', '--config', '.ci-tools/ecs.php', '--fix']);
+    $command = ['composer', 'exec', '--', 'rector', 'process', '--config', '.ci-tools/rector.php'];
+    if (! $fix) {
+        $command[] = '--dry-run';
+    }
+    phpqa($command);
 }
 
-#[AsTask(description: 'Run Rector dry-run')]
-function rector(): void
+#[AsTask(description: 'Run PHPStan (use --baseline to generate baseline file)')]
+function phpstan(bool $baseline = false): void
 {
-    phpqa(['composer', 'exec', '--', 'rector', 'process', '--dry-run', '--config', '.ci-tools/rector.php']);
-}
-
-#[AsTask(description: 'Run Rector with fix')]
-function rector_fix(): void
-{
-    phpqa(['composer', 'exec', '--', 'rector', 'process', '--config', '.ci-tools/rector.php']);
-}
-
-#[AsTask(description: 'Run PHPStan')]
-function phpstan(): void
-{
-    phpqa(['phpstan', 'analyse', '--error-format=github', '--configuration=.ci-tools/phpstan.neon']);
-}
-
-#[AsTask(description: 'Generate PHPStan baseline')]
-function phpstan_baseline(): void
-{
-    phpqa([
-        'composer', 'exec', '--',
-        'phpstan', 'analyse',
-        '--configuration=.ci-tools/phpstan.neon',
-        '--generate-baseline=.ci-tools/phpstan-baseline.neon',
-    ]);
+    if ($baseline) {
+        phpqa([
+            'composer', 'exec', '--',
+            'phpstan', 'analyse',
+            '--configuration=.ci-tools/phpstan.neon',
+            '--generate-baseline=.ci-tools/phpstan-baseline.neon',
+        ]);
+    } else {
+        phpqa(['phpstan', 'analyse', '--error-format=github', '--configuration=.ci-tools/phpstan.neon']);
+    }
 }
 
 #[AsTask(description: 'Run Deptrac')]
@@ -298,14 +292,8 @@ function lint(): void
     phpqa(['composer', 'exec', '--', 'parallel-lint', 'src', 'tests']);
 }
 
-#[AsTask]
-function ls(): void
-{
-    phpqa(['ls', '-la', '/tools/.composer/vendor-bin/phpunit/vendor/bin/phpunit']);
-}
-
 #[AsTask(description: 'Run Infection for mutation testing')]
-function infect($minMsi = 0, $minCoveredMsi = 0): void
+function infect(int $minMsi = 0, int $minCoveredMsi = 0): void
 {
     phpqa([
         'composer', 'exec', '--',
@@ -326,8 +314,8 @@ function prepare_pr(): void
 {
     io()->title('Preparing code for pull request…');
 
-    ecs_fix();
-    rector_fix();
+    ecs(fix: true);
+    rector(fix: true);
 
     io()
         ->section('Running static analysis…');
