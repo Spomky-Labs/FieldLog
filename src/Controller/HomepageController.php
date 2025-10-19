@@ -28,7 +28,7 @@ final class HomepageController extends AbstractController
     {
         $page = (int) $request->query->get('page', '1');
         $page = max($page, 1);
-        $maxPerPage = 25;
+        $maxPerPage = 5;
 
         return $this->render('homepage/list.html.twig', [
             'entries' => $this->entryRepository->getPaginatedEntries($page, $maxPerPage),

@@ -1,0 +1,3 @@
+<a {{ attributes }} {% if href is defined %}href="{{ href }}" {% endif %} aria-current="page" class="join-item btn{% if start is defined or end is defined %} btn-disabled{% elseif active is defined %} btn-active{% endif %}">
+    {% block content %}{% endblock %}
+</a>

@@ -1,0 +1,98 @@
+{% set route = app.request.attributes.get('_route') %}
+{% set route_params = app.request.attributes.get('_route_params') %}
+{% set params = route_params|merge(app.request.query.all) %}
+{% set startPage = currentPage - 2 %}
+{%  if startPage < 1 %}
+    {% set startPage = 1 %}
+{% endif %}
+{% set previous = currentPage - 1 %}
+{% set next = currentPage + 1 %}
+
+<nav aria-label="Table navigation" class="w-full mb-4">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-2">
+        <span class="text-sm font-normal">
+            {% trans %}nav.page{% endtrans %} <span class="font-semibold text-gray-900 dark:text-white">{{ currentPage }} {% trans %}nav.of{% endtrans %} {{ totalPages }}</span>.
+            {{ maxPerPage }} {% trans %}nav.elements.per.page{% endtrans %}
+        </span>
+        {% if totalPages > 1 %}
+            {% if totalPages <= 4 %}
+                {% set pagesToShow = range(1, totalPages) %}
+            {% else %}
+                {% set pagesToShow = [1, 2] %}
+                {% if currentPage - 1 >= 3 and currentPage - 1 <= totalPages - 2 %}
+                    {% set pagesToShow = pagesToShow|merge([currentPage - 1]) %}
+                {% endif %}
+                {% if currentPage >= 3 and currentPage <= totalPages - 2 %}
+                    {% set pagesToShow = pagesToShow|merge([currentPage]) %}
+                {% endif %}
+                {% if currentPage + 1 >= 3 and currentPage + 1 <= totalPages - 2 %}
+                    {% set pagesToShow = pagesToShow|merge([currentPage + 1]) %}
+                {% endif %}
+                {% set pagesToShow = pagesToShow|merge([totalPages - 1, totalPages]) %}
+                {% set pagesToShow = pagesToShow|unique|sort %}
+            {% endif %}
+            {% set previousPage = null %}
+            <div class="hidden sm:flex join">
+                {% if currentPage != 1 %}
+                    <twig:LivePagination:Page href="{{ path(route, params|merge({ currentPage:1 })) }}">
+                        <span class="sr-only">{% trans %}nav.begin{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-to-left" />
+                    </twig:LivePagination:Page>
+                {% else %}
+                    <twig:LivePagination:Page start>
+                        <span class="sr-only">{% trans %}nav.begin{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-to-left" />
+                    </twig:LivePagination:Page>
+                {% endif %}
+                {% if currentPage > 1 %}
+                    <twig:LivePagination:Page href="{{ path(route, params|merge({ currentPage: currentPage-1 })) }}">
+                        <span class="sr-only">{% trans %}nav.previous{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-left" />
+                    </twig:LivePagination:Page>
+                {% else %}
+                    <twig:LivePagination:Page start>
+                        <span class="sr-only">{% trans %}nav.previous{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-left" />
+                    </twig:LivePagination:Page>
+                {% endif %}
+                {% for pageToShow in pagesToShow %}
+                    {% if previousPage is not null and pageToShow - previousPage > 1 %}
+                        <twig:LivePagination:Page>&hellip;</twig:LivePagination:Page>
+                    {% endif %}
+                    {% if pageToShow == currentPage %}
+                        <twig:LivePagination:Page active>
+                            {{ pageToShow }}
+                        </twig:LivePagination:Page>
+                    {% else %}
+                        <twig:LivePagination:Page href="{{ path(route, params|merge({ currentPage: pageToShow })) }}">
+                            {{ pageToShow }}
+                        </twig:LivePagination:Page>
+                    {% endif %}
+                    {% set previousPage = pageToShow %}
+                {% endfor %}
+                {% if currentPage < totalPages %}
+                    <twig:LivePagination:Page href="{{ path(route, params|merge({ currentPage: currentPage+1 })) }}">
+                        <span class="sr-only">{% trans %}nav.next{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-right" />
+                    </twig:LivePagination:Page>
+                {% else %}
+                    <twig:LivePagination:Page start>
+                        <span class="sr-only">{% trans %}nav.next{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-right" />
+                    </twig:LivePagination:Page>
+                {% endif %}
+                {% if currentPage != totalPages %}
+                    <twig:LivePagination:Page href="{{ path(route, params|merge({ currentPage:totalPages })) }}">
+                        <span class="sr-only">{% trans %}nav.end{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-to-right" />
+                    </twig:LivePagination:Page>
+                {% else %}
+                    <twig:LivePagination:Page end>
+                        <span class="sr-only">{% trans %}nav.end{% endtrans %}</span>
+                        <twig:ux:icon class="size-[1.2em]" name="cil:arrow-thick-to-right" />
+                    </twig:LivePagination:Page>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</nav>
